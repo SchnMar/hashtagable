@@ -41,8 +41,9 @@ TextSpan getHashTagTextSpan({
   @required TextStyle decoratedStyle,
   @required TextStyle basicStyle,
   @required String source,
-  Function(String) onTap,
+  @required Function(String) onTap,
   bool decorateAtSign = false,
+  List<InlineSpan> children,
 }) {
   final decorations = Decorator(
           decoratedStyle: decoratedStyle,
@@ -50,7 +51,19 @@ TextSpan getHashTagTextSpan({
           decorateAtSign: decorateAtSign)
       .getDecorations(source);
   if (decorations.isEmpty) {
-    return TextSpan(text: source, style: basicStyle);
+    List<TextSpan> span = List<TextSpan>();
+
+    span.add(TextSpan(text: source, style: basicStyle));
+    if (children != null) {
+      span.add(
+        TextSpan(text: ' '),
+      );
+
+      for (var child in children) {
+        span.add(child);
+      }
+    }
+    return TextSpan(children: span);
   } else {
     decorations.sort();
     final span = decorations
@@ -77,6 +90,14 @@ TextSpan getHashTagTextSpan({
         .values
         .toList();
 
+    if (children != null) {
+      span.add(
+        TextSpan(text: ' '),
+      );
+      for (var child in children) {
+        span.add(child);
+      }
+    }
     return TextSpan(children: span);
   }
 }
