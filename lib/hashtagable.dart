@@ -5,3 +5,4 @@ export 'decorator/hashtag_regular_expression.dart';
 export 'functions.dart';
 export 'widgets/hashtag_text.dart';
 export 'widgets/hashtag_text_field.dart';
+export 'widgets/hashtag_editable_text.dart';
