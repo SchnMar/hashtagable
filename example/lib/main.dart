@@ -29,19 +29,20 @@ class _MyAppState extends State<MyApp> {
                   decoratedStyle: TextStyle(fontSize: 22, color: Colors.red),
                   textAlign: TextAlign.center,
                   onTap: (text) {
-                    showDialog(
-                      builder: (context) => AlertDialog(
-                        title: Text(text),
-                      ),
-                    );
+                    print(text);
                   },
                 ),
-                // HashTagTextField(
-                //   basicStyle: TextStyle(fontSize: 15, color: Colors.black),
-                //   decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
-                //   keyboardType: TextInputType.multiline,
-                //   maxLines: null,
-                // ),
+                HashTagTextField(
+                  basicStyle: TextStyle(fontSize: 15, color: Colors.black),
+                  decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+
+                  /// Called when detection (words start with #, or # and @) is being typed
+                  onDetectionTyped: (text) {
+                    print(text);
+                  },
+                ),
                 // TextField(),
               ],
             ),
